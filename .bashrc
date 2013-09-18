@@ -87,7 +87,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -l'
+alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -119,7 +119,7 @@ alias g='gvim --remote-silent'
 # Compile using 4 cores, if failed remake with 1 core to show errors
 makej4 ()
 {
-    /usr/bin/make -j 4 "$@" || (echo "FAILED" && /usr/bin/make "$@") 
+    /usr/bin/colormake -j 4 "$@" || (echo "FAILED" && /usr/bin/colormake "$@") 
 }
 alias make=makej4
 
@@ -142,7 +142,7 @@ function buildenv()
 	dm36x|l138|L138|oe2008)
 		echo Setting up CL MityOMAP-L138 Build environment...
 		. /usr/local/angstrom/arm/environment-setup
-		alias makearm="colormake ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi-"
+		alias makearm="make ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi-"
 		;;
 
 	oe2010)
@@ -154,7 +154,7 @@ function buildenv()
 		echo Setting up CL MityARM-AM335X Build environment...
 		. /usr/local/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
 		#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
-		alias makearm="colormake ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
+		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
 		;;
 	*)
 		echo "Toolchain TARGET_SYS = $TARGET_SYS"
