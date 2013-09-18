@@ -129,6 +129,7 @@ makej4 ()
 }
 alias make=makej4
 
+# http://linuxdeveloper.blogspot.com/2012/10/building-linux-kernel-clean-way.html
 # $cd linux-3.6
 # $make distclean
 # $make defconfig O=`kb`
