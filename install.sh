@@ -25,3 +25,14 @@ if [ ! -d .vim ]; then
 fi
 
 sudo apt-get install ccache
+# If not a symlink
+[ ! -L /usr/lib/ccache/arm-arago-linux-gnueabi-gcc ] && (
+cd /usr/lib/ccache/
+sudo ln -s ../../bin/ccache arm-arago-linux-gnueabi-g++
+sudo ln -s ../../bin/ccache arm-arago-linux-gnueabi-gcc
+sudo ln -s ../../bin/ccache arm-arago-linux-gnueabi-cpp
+sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-cpp
+sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-gcc
+sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-g++
+)
+

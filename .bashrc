@@ -169,6 +169,8 @@ function buildenv()
 		echo Setting up CL MityOMAP-L138 Build environment...
 		. /usr/local/angstrom/arm/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi-"
+		export CCACHE_DIR="$HOME/.ccache_arm-angstrom-linux-gneuabi"
+		export PATH="/usr/lib/ccache:$PATH"
 		;;
 
 	oe2010)
@@ -181,11 +183,13 @@ function buildenv()
 		. /usr/local/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
 		#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
+		export CCACHE_DIR="$HOME/.ccache_arm-arago-linux-gneuabi"
+		export PATH="/usr/lib/ccache:$PATH"
 		;;
 	timesys)
 		echo Setting up MityARM-AM335X Timesys build environment
 		export PATH=/home/mitydsp/timesys/mityarm_335x/toolchain/ccache:/home/mitydsp/timesys/mityarm_335x/toolchain/bin:$PATH
-		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
+		alias makearm="make ARCH=arm CROSS_COMPILE=armv7l-timesys-linux-gnueabi-"
 		;;
 	*)
 		echo "Toolchain TARGET_SYS = $TARGET_SYS"
@@ -201,3 +205,7 @@ alias gcp='git cherry-pick -xs'
 #Save history immediately
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
+#CCACHE
+export CCACHE_DIR="$HOME/.ccache"
+export PATH="/usr/lib/ccache:$PATH"
