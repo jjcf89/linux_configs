@@ -3,7 +3,11 @@
 # for examples
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+if [ -z "$PS1" ] 
+then
+	echo Non-Interactive shell >&2
+	return
+fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
@@ -15,13 +19,15 @@ export HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -76,7 +82,7 @@ esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    eval "`dircolors -b`"
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
@@ -87,7 +93,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias ll='ls -la'
+alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -125,7 +131,7 @@ fi
 # Compile using 4 cores, if failed remake with 1 core to show errors
 makej4 ()
 {
-    $MAKE -j 4 "$@" || (echo "FAILED" && $MAKE "$@") 
+    /usr/bin/make -j 7 "$@" || (echo "FAILED" && /usr/bin/make "$@")
 }
 alias make=makej4
 
@@ -176,8 +182,22 @@ function buildenv()
 		#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
 		;;
+	timesys)
+		echo Setting up MityARM-AM335X Timesys build environment
+		export PATH=/home/mitydsp/timesys/mityarm_335x/toolchain/ccache:/home/mitydsp/timesys/mityarm_335x/toolchain/bin:$PATH
+		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
+		;;
 	*)
 		echo "Toolchain TARGET_SYS = $TARGET_SYS"
 		;;
 	esac
 }
+
+alias cpuimage='cp arch/arm/boot/uImage /media/boot/; umount /dev/sdb{1..3}; mount'
+alias makeu='makearm uImage'
+alias gitk='gitk -n 10000'
+alias gcp='git cherry-pick -xs'
+
+#Save history immediately
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
