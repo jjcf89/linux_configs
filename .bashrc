@@ -116,12 +116,31 @@ alias cgrep='rgrep --include=*.{c,cpp,h,py}'
 
 alias g='gvim --remote-silent'
 
+MAKE=/usr/bin/make
+if [ -e /usr/bin/colormake ]; then
+    # https://github.com/pagekite/Colormake
+    MAKE=/usr/bin/colormake;
+fi
+
 # Compile using 4 cores, if failed remake with 1 core to show errors
 makej4 ()
 {
-    /usr/bin/colormake -j 4 "$@" || (echo "FAILED" && /usr/bin/colormake "$@") 
+    $MAKE -j 4 "$@" || (echo "FAILED" && $MAKE "$@") 
 }
 alias make=makej4
+
+# $cd linux-3.6
+# $make distclean
+# $make defconfig O=`kb`
+# $make O=`kb`
+pb ()
+{
+    local P="~/projects/build/$(basename $(pwd))"
+    local branch="_$(git branch)" || branch=''
+    P=$P$branch
+    mkdir -p $P
+    echo $P
+}
 
 alias scpbrcm="ssh brcm34 pkill brcm; scp ~/bin-arm/* brcm34:bin/"
 alias killcelery='ps auxww | awk " /celery/ {print \$2}" | xargs kill -9'
