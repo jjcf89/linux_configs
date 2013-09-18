@@ -10,7 +10,7 @@ for f in $HOME_FILES; do
     echo Copying $BASE/$f to .
     #If not a symlink
     if [ ! -L $f ]; then
-        cp -vs --backup=.bak $BASE/$f .
+        cp -vs --suffix=.bak $BASE/$f .
     fi
 done
 
