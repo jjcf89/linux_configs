@@ -23,3 +23,5 @@ fi
 if [ ! -d .vim ]; then
     ln -vs $BASE/.vim .vim
 fi
+
+sudo apt-get install ccache

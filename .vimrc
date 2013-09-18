@@ -85,8 +85,10 @@ set nowb
 set noswapfile
 
 "Persistent undo
-set undodir=~/.vim_runtime/undodir
-set undofile
+if has('persistent_undo')
+    set undodir=~/.vim_runtime/undodir
+    set undofile
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
