@@ -2,7 +2,7 @@
 	email = jcormier@criticallink.com
 	name = Cormier, Jonathan
 [core]
-	excludesfile = /home/jcormier/TI_IPNC_RDK_DM36x_V5.1.0/C.gitignore
+	excludesfile = ~/.configs/C.gitignore
 [cola]
 	tabwidth = 4
 [giggle]
