@@ -2,6 +2,8 @@
 
 BASE=$PWD
 
+sudo true
+
 cd ~/
 
 HOME_FILES='.bashrc .gitconfig .vimrc'
@@ -14,6 +16,7 @@ for f in $HOME_FILES; do
     fi
 done
 
+sudo apt-get install vim git subversion
 echo Copying .vim directory
 # If not a symlink and directory exists
 if [ ! -L .vim ] && [ -d .vim ]; then
