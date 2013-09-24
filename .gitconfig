@@ -1,0 +1,14 @@
+[user]
+	email = jcormier@criticallink.com
+	name = Cormier, Jonathan
+[core]
+	excludesfile = ~/.configs/C.gitignore
+[cola]
+	tabwidth = 4
+[giggle]
+	main-window-maximized = false
+	main-window-geometry = 1035x600+1+78
+[alias]
+	unstage = reset HEAD --
+[branch]
+	autosetupmerge = true

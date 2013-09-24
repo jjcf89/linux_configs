@@ -1,0 +1,3 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/export/jcormier/TI_IPNC_RDK_DM36x_V5.1.0/Source/dvsdk_ipnctools/linux-devkit/arm-arago-linux-gnueabi/etc/opkg'
