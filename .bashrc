@@ -120,6 +120,14 @@ fi
 alias rgrep='grep -RI --exclude-dir=.svn --exclude-dir=*.prj_files'       # Recursive grep ignoring svn files
 alias cgrep='rgrep --include=*.{c,cpp,h,py}'
 
+# Use find to ignore symlinks
+sgrep ()
+{
+
+    local repo_ign="-name .git -o -name .svn" 
+    find . \( -type d -a \( $repo_ign \) \) -prune -o -type f -exec grep -H --color $@ {} \;
+}
+
 alias g='gvim --remote-silent'
 
 MAKE=/usr/bin/make
