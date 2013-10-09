@@ -139,7 +139,7 @@ fi
 # Compile using 4 cores, if failed remake with 1 core to show errors
 makej4 ()
 {
-    /usr/bin/make -j 7 "$@" || (echo "FAILED" && /usr/bin/make "$@")
+    time $MAKE -j 7 "$@" || (echo "FAILED" && $MAKE "$@")
 }
 alias make=makej4
 
@@ -190,6 +190,7 @@ function buildenv()
 		echo Setting up CL MityARM-AM335X Build environment...
 		. /usr/local/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
 		#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
+		#. /usr/local/ti-sdk-am335x-evm-05.07.00.00/linux-devkit/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
 		export CCACHE_DIR="$HOME/.ccache_arm-arago-linux-gneuabi"
 		export PATH="/usr/lib/ccache:$PATH"
@@ -205,7 +206,22 @@ function buildenv()
 	esac
 }
 
-alias cpuimage='cp arch/arm/boot/uImage /media/boot/; umount /dev/sdb{1..3}; mount'
+isMounted()
+{
+    local mountPT=$1
+    mountpoint -q $mountPT
+    return $?
+}
+
+waitForMount()
+{
+    local mountPT=$1
+    while ! isMounted $mountPT; do
+	sleep .5
+    done
+}
+
+alias cpuimage='echo Insert SD Card; waitForMount /media/boot && cp arch/arm/boot/uImage /media/boot/ && umount /dev/sdb{1..3}; mount'
 alias makeu='makearm uImage'
 alias gitk='gitk -n 10000'
 alias gcp='git cherry-pick -xs'
@@ -217,3 +233,7 @@ PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 #CCACHE
 export CCACHE_DIR="$HOME/.ccache"
 export PATH="/usr/lib/ccache:$PATH"
+
+QMAKESPEC=/usr/local/ti-sdk-am335x-evm-05.07.00.00/linux-devkit/arm-arago-linux-gnueabi/usr/share/qtopia/mkspecs/linux-g++;export QMAKESPEC; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - AB1C36D0-2B62-930A-B1CF-1B15CF69BE47 F5B7D4D6-21B6-393F-0929-39B2C5CE5B56
+
+QMAKESPEC=/usr/local/ti-sdk-am335x-evm-06.00.00.00/linux-devkit/arm-arago-linux-gnueabi/usr/share/qtopia/mkspecs/linux-g++;export QMAKESPEC; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - AB1C36D0-2B62-930A-B1CF-1B15CF69BE47 799A5755-0755-FE0C-9F76-A336F294C7FA
