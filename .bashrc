@@ -237,3 +237,5 @@ export PATH="/usr/lib/ccache:$PATH"
 QMAKESPEC=/usr/local/ti-sdk-am335x-evm-05.07.00.00/linux-devkit/arm-arago-linux-gnueabi/usr/share/qtopia/mkspecs/linux-g++;export QMAKESPEC; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - AB1C36D0-2B62-930A-B1CF-1B15CF69BE47 F5B7D4D6-21B6-393F-0929-39B2C5CE5B56
 
 QMAKESPEC=/usr/local/ti-sdk-am335x-evm-06.00.00.00/linux-devkit/arm-arago-linux-gnueabi/usr/share/qtopia/mkspecs/linux-g++;export QMAKESPEC; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - AB1C36D0-2B62-930A-B1CF-1B15CF69BE47 799A5755-0755-FE0C-9F76-A336F294C7FA
+
+source ~/.completion

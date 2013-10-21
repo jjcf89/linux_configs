@@ -1,12 +1,14 @@
 #!/bin/sh
 
+# Set cwd to location of script
+cd $(dirname ${BASH_SOURCE[0]} )
 BASE=$PWD
 
 sudo true
 
 cd ~/
 
-HOME_FILES='.bashrc .gitconfig .vimrc'
+HOME_FILES='.bashrc .completion .gitconfig .vimrc'
 
 for f in $HOME_FILES; do
     echo Copying $BASE/$f to .
