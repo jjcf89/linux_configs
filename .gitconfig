@@ -10,5 +10,8 @@
 	main-window-geometry = 1035x600+1+78
 [alias]
 	unstage = reset HEAD --
+	co = checkout
+	ci = commit
+    s = status
 [branch]
 	autosetupmerge = true
