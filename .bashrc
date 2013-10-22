@@ -128,12 +128,12 @@ sgrep ()
     find . \( -type d -a \( $repo_ign \) \) -prune -o -type f -exec grep -H --color $@ {} \;
 }
 
-alias g='gvim --remote-silent'
 
 MAKE=/usr/bin/make
 if [ -e /usr/bin/colormake ]; then
     # https://github.com/pagekite/Colormake
     MAKE=/usr/bin/colormake;
+    complete -o filenames -F _make colormake
 fi
 
 # Compile using 4 cores, if failed remake with 1 core to show errors
@@ -223,8 +223,9 @@ waitForMount()
 
 alias cpuimage='echo Insert SD Card; waitForMount /media/boot && cp arch/arm/boot/uImage /media/boot/ && umount /dev/sdb{1..3}; mount'
 alias makeu='makearm uImage'
-alias gitk='gitk -n 10000'
+alias gitk='gitk -n10000'
 alias gcp='git cherry-pick -xs'
+alias g='gvim --remote-silent'
 
 #Save history immediately
 shopt -s histappend
