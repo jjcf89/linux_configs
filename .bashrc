@@ -195,6 +195,17 @@ function buildenv()
 		export CCACHE_DIR="$HOME/.ccache_arm-arago-linux-gneuabi"
 		export PATH="/usr/lib/ccache:$PATH"
 		;;
+	am335x_new)
+	    echo "Setting up (06.00.00.00) CL MityARM-AM335X Build environment..."
+		. /usr/local/ti-sdk-am335x-evm-06.00.00.00/linux-devkit/environment-setup
+		alias makearm="make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
+		export CCACHE_DIR="$HOME/.ccache_arm-linux-gnueabihf-"
+		export PATH="/usr/lib/ccache:$PATH"
+		#cd /usr/lib/ccache
+		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-cpp
+		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-g++
+		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-gcc
+		;;
 	timesys)
 		echo Setting up MityARM-AM335X Timesys build environment
 		export PATH=/home/mitydsp/timesys/mityarm_335x/toolchain/ccache:/home/mitydsp/timesys/mityarm_335x/toolchain/bin:$PATH
@@ -221,8 +232,51 @@ waitForMount()
     done
 }
 
-alias cpuimage='echo Insert SD Card; waitForMount /media/boot && cp arch/arm/boot/uImage /media/boot/ && umount /dev/sdb{1..3}; mount'
+waitForSD()
+{
+    echo Insert SD Card; 
+    waitForMount /media/boot &&
+	waitForMount /media/rootfs &&
+	waitForMount /media/START_HERE
+}
+
+umountSD()
+{ 
+    # Try unmounting 3 times before erroring out
+    waitTime=1
+    dev=/dev/sdb
+    for i in $(seq 1 3);
+    do
+	umount ${dev}$i || 
+	(sleep $waitTime; umount ${dev}$i) || 
+	(sleep $waitTime; umount ${dev}$i) ||
+	    return 1
+    done
+    return 0
+}
+
+copyUImage()
+{
+    waitForSD && 
+	sleep .5 && 
+	cp -v arch/arm/boot/uImage /media/boot/ && 
+	umountSD; 
+    mount;
+}
+
+copyMLO()
+{
+    waitForSD && 
+	sleep .5 && 
+	cp -v MLO u-boot.img /media/boot/ && 
+	umountSD; 
+    mount;
+}
+
+alias cpuimage='copyUImage'
+alias cpmlo='copyMLO'
 alias makeu='makearm uImage'
+alias makedef='makearm mityarm-335x-devkit_defconfig'
 alias gitk='gitk -n10000'
 alias gcp='git cherry-pick -xs'
 alias g='gvim --remote-silent'
