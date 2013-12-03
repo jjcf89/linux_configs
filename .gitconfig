@@ -3,6 +3,8 @@
 	name = Cormier, Jonathan
 [core]
 	excludesfile = ~/.configs/C.gitignore
+[push]
+    default=tracking
 [cola]
 	tabwidth = 4
 [giggle]
