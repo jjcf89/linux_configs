@@ -29,7 +29,6 @@
 if has("cscope")
 
     """"""""""""" Standard cscope/vim boilerplate
-    echo "cscope_maps.vim"
 
     " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
     set cscopetag
