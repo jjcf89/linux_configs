@@ -356,13 +356,10 @@ map <leader>bb :cd ..<cr>
 function LoadCscope()
     if (executable("cscope") && has("cscope"))
         let UpperPath = findfile("cscope.out", ".;")
-        echo UpperPath
         if (!empty(UpperPath))
             let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)   
-            echo path
             if (!empty(path))
                 let s:CscopeAddString = "cs add " . UpperPath . " " . path 
-                echo s:CscopeAddString
                 execute s:CscopeAddString 
             endif
         endif
