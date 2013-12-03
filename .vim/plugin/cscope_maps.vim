@@ -45,7 +45,8 @@ if has("cscope")
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
     else
-        LoadCscope() " Backwards search for cscope file
+        " Backwards search for cscope file
+        call LoadCscope()
     endif
 
     " show msg when any other cscope db added
