@@ -29,6 +29,7 @@
 if has("cscope")
 
     """"""""""""" Standard cscope/vim boilerplate
+    echo "cscope_maps.vim"
 
     " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
     set cscopetag
@@ -43,6 +44,8 @@ if has("cscope")
     " else add the database pointed to by environment variable 
     elseif $CSCOPE_DB != ""
         cs add $CSCOPE_DB
+    else
+        LoadCscope() " Backwards search for cscope file
     endif
 
     " show msg when any other cscope db added
