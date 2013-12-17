@@ -378,7 +378,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 
 let g:pymode_run_key = 'R'
 
-colorscheme desert
+colorscheme luna
 
 "Create mapping that runs current file as command
 map <leader>r :!./%
