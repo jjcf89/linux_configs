@@ -5,6 +5,7 @@
 set history=700
 
 " Recommended for pathogen
+runtime pathogen/autoload/pathogen.vim
 set sessionoptions-=options
 execute pathogen#infect()
 
