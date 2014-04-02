@@ -173,13 +173,22 @@ function buildenv()
 		tt=""
 	fi
 	case "$tt" in
-	dm36x|l138|L138|oe2008)
+	l138|L138|oe2008)
 		echo Setting up CL MityOMAP-L138 Build environment...
 		. /usr/local/angstrom/arm/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi-"
 		export CCACHE_DIR="$HOME/.ccache_arm-angstrom-linux-gneuabi"
 		export PATH="/usr/lib/ccache:$PATH"
 		;;
+    ipnc)
+        echo Setting up IPNC Build environment...
+        . /export/jcormier/TI_IPNC_RDK_DM36x_V5.1.0/Source/dvsdk_ipnctools/linux-devkit/environment-setup
+		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
+		export CCACHE_DIR="$HOME/.ccache_arm-arago-linux-gneuabi"
+		export PATH="/usr/lib/ccache:$PATH"
+
+		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi- menuconfig'
+        ;;
 
 	oe2010)
 		echo Setting up CL MityOMAP-L138 OE 2010 Build environment...
@@ -288,9 +297,15 @@ copyMLO()
 
 alias cpuimage='copyUImage'
 alias cpmlo='copyMLO'
-alias gitk='gitk -n10000'
+
+# Open gitk limiting history to 2k entries
+alias gitk='gitk -n2000'
 alias gcp='git cherry-pick -xs'
+# Open files in already open gvim
 alias g='gvim --remote-silent'
+
+# Git shortcuts
+alias gits='git status'
 
 #Save history immediately
 shopt -s histappend
