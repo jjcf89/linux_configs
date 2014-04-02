@@ -209,15 +209,16 @@ function buildenv()
 		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi- menuconfig'
 		;;
 	am335x_new)
-	    echo "Setting up (06.00.00.00) CL MityARM-AM335X Build environment..."
-		. /usr/local/ti-sdk-am335x-evm-06.00.00.00/linux-devkit/environment-setup
+	    echo "Setting up (07.00.00.00) CL MityARM-AM335X Build environment..."
+		. /usr/local/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
 		export CCACHE_DIR="$HOME/.ccache_arm-linux-gnueabihf-"
 		export PATH="/usr/lib/ccache:$PATH"
 
-		alias makeu='makearm uImage'
-		alias makedef='makearm mityarm-335x-devkit_defconfig'
-		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi- menuconfig'
+		alias makeu='makearm uImage modules LOADADDR=0x80008000'
+		alias makedef='makearm omap2plus_defconfig'
+		alias maked='makearm dtbs'
+		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabihf- menuconfig'
 		#cd /usr/lib/ccache
 		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-cpp
 		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-g++
