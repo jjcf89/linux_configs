@@ -5,4 +5,4 @@ Host *
     ForwardAgent yes
     ForwardX11 yes
     GSSAPIAuthentication no
-    Ciphers arcfour256,arcfour
+    Ciphers arcfour256,arcfour,aes256-ctr
