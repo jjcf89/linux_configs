@@ -43,3 +43,4 @@ sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-gcc
 sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-g++
 )
 
+git submodule update --init --recursive
