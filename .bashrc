@@ -177,14 +177,16 @@ function buildenv()
 		echo Setting up CL MityOMAP-L138 Build environment...
 		. /usr/local/angstrom/arm/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi-"
-		export CCACHE_DIR="$HOME/.ccache_arm-angstrom-linux-gneuabi"
+		export CCACHE_DIR="$HOME/local/.ccache_arm-angstrom-linux-gneuabi"
+		export CCACHE_TEMPDIR="/dev/shm"
 		export PATH="/usr/lib/ccache:$PATH"
 		;;
     ipnc)
         echo Setting up IPNC Build environment...
         . /export/jcormier/TI_IPNC_RDK_DM36x_V5.1.0/Source/dvsdk_ipnctools/linux-devkit/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
-		export CCACHE_DIR="$HOME/.ccache_arm-arago-linux-gneuabi"
+		export CCACHE_DIR="$HOME/local/.ccache_arm-arago-linux-gneuabi"
+		export CCACHE_TEMPDIR="/dev/shm"
 		export PATH="/usr/lib/ccache:$PATH"
 
 		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi- menuconfig'
@@ -201,7 +203,8 @@ function buildenv()
 		#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
 		#. /usr/local/ti-sdk-am335x-evm-05.07.00.00/linux-devkit/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
-		export CCACHE_DIR="$HOME/.ccache_arm-arago-linux-gneuabi"
+		export CCACHE_DIR="$HOME/local/.ccache_arm-arago-linux-gneuabi"
+		export CCACHE_TEMPDIR="/dev/shm"
 		export PATH="/usr/lib/ccache:$PATH"
 
 		alias makeu='makearm uImage'
@@ -212,7 +215,8 @@ function buildenv()
 	    echo "Setting up (07.00.00.00) CL MityARM-AM335X Build environment..."
 		. /usr/local/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
-		export CCACHE_DIR="$HOME/.ccache_arm-linux-gnueabihf-"
+		export CCACHE_DIR="$HOME/local/.ccache_arm-linux-gnueabihf-"
+		export CCACHE_TEMPDIR="/dev/shm"
 		export PATH="/usr/lib/ccache:$PATH"
 
 		alias makeu='makearm uImage modules LOADADDR=0x80008000'
@@ -226,7 +230,9 @@ function buildenv()
 		;;
 	timesys)
 		echo Setting up MityARM-AM335X Timesys build environment
-		export PATH=/home/mitydsp/timesys/mityarm_335x/toolchain/ccache:/home/mitydsp/timesys/mityarm_335x/toolchain/bin:$PATH
+		export PATH=$HOME/timesys/mityarm_335x/toolchain/ccache:$HOME/timesys/mityarm_335x/toolchain/bin:$PATH
+		export CCACHE_DIR="$HOME/local/.ccache_armv7l-timesys-linux-gnueabi-"
+		export CCACHE_TEMPDIR="/dev/shm"
 		alias makearm="make ARCH=arm CROSS_COMPILE=armv7l-timesys-linux-gnueabi-"
 
 		alias makeu='makearm uImage modules LOADADDR=0x80008000'
@@ -313,7 +319,8 @@ shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 #CCACHE
-export CCACHE_DIR="$HOME/.ccache"
+export CCACHE_DIR="$HOME/local/.ccache"
+export CCACHE_TEMPDIR="/dev/shm"
 export PATH="/usr/lib/ccache:$PATH"
 
 QMAKESPEC=/usr/local/ti-sdk-am335x-evm-05.07.00.00/linux-devkit/arm-arago-linux-gnueabi/usr/share/qtopia/mkspecs/linux-g++;export QMAKESPEC; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - AB1C36D0-2B62-930A-B1CF-1B15CF69BE47 F5B7D4D6-21B6-393F-0929-39B2C5CE5B56
