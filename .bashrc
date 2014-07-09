@@ -191,7 +191,7 @@ function buildenv()
 		;;
     ipnc)
         echo Setting up IPNC Build environment...
-        . /export/jcormier/TI_IPNC_RDK_DM36x_V5.1.0/Source/dvsdk_ipnctools/linux-devkit/environment-setup
+        . /export/space/jcormier/TI_IPNC_RDK_DM36x_V5.1.0/Source/dvsdk_ipnctools/linux-devkit/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
 		export CCACHE_DIR="$HOME/local/.ccache_arm-arago-linux-gneuabi"
 		export CCACHE_TEMPDIR="/dev/shm"
