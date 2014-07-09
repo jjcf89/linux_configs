@@ -287,45 +287,47 @@ waitForMount()
 	done
 }
 
+if [ -d /media/jcormier ]
+then
+	mountDir=/media/jcormier
+else
+	mountDir=/media
+fi
+
 waitForSD()
 {
 	echo Insert SD Card;
-	waitForMount /media/boot &&
-		waitForMount /media/rootfs &&
-		waitForMount /media/START_HERE
+	waitForMount $mountDir/boot &&
+		waitForMount $mountDir/rootfs &&
+		waitForMount $mountDir/START_HERE
+	sleep .5
 }
 
 umountSD()
 { 
 	# Try unmounting 3 times before erroring out
 	waitTime=1
-	dev=/dev/sdb
-	for i in $(seq 1 3);
-	do
-		umount ${dev}$i ||
-			(sleep $waitTime; umount ${dev}$i) ||
-			(sleep $waitTime; umount ${dev}$i) ||
-			return 1
-	done
+	umount $mountDir/* ||
+		(sleep $waitTime; umount $mountDir/*) ||
+		(sleep $waitTime; umount $mountDir/*) ||
+		return 1
 	return 0
 }
 
 copyUImage()
 {
 	waitForSD &&
-		sleep .5 &&
-		cp -v arch/arm/boot/uImage /media/boot/ &&
+		cp -v arch/arm/boot/uImage $mountDir/boot/ &&
 		umountSD;
-	mount;
+	mount | grep media
 }
 
 copyMLO()
 {
 	waitForSD && 
-		sleep .5 && 
-		cp -v MLO u-boot.img /media/boot/ && 
+		cp -v MLO u-boot.img $mountDir/boot/ && 
 		umountSD; 
-	mount;
+	mount | grep media
 }
 
 alias cpuimage='copyUImage'
