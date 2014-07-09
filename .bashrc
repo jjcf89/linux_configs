@@ -226,9 +226,14 @@ function buildenv()
 	am335x|AM335X)
         isFedora && (echo "TI toolchain doesn't work in fedora"; return)
 		echo Setting up CL MityARM-AM335X Build environment...
-		. /usr/local/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
 		#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
 		#. /usr/local/ti-sdk-am335x-evm-05.07.00.00/linux-devkit/environment-setup
+        local toolchain=/usr/local/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
+        if [ ! -d $toolchain ] # if doesn't exist
+        then
+            toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
+        fi
+		. $toolchain
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
 		export CCACHE_DIR="$HOME/local/.ccache_arm-arago-linux-gneuabi"
 		export CCACHE_TEMPDIR="/dev/shm"
@@ -241,7 +246,12 @@ function buildenv()
 	am335x_new)
         isFedora && (echo "TI toolchain doesn't work in fedora"; return)
 	    echo "Setting up (07.00.00.00) CL MityARM-AM335X Build environment..."
-		. /usr/local/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
+        local toolchain=/usr/local/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
+        if [ ! -d $toolchain ] # if doesn't exist
+        then
+            toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
+        fi
+		. $toolchain
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
 		export CCACHE_DIR="$HOME/local/.ccache_arm-linux-gnueabihf-"
 		export CCACHE_TEMPDIR="/dev/shm"
@@ -258,7 +268,12 @@ function buildenv()
 		;;
 	timesys)
 		echo Setting up MityARM-AM335X Timesys build environment
-		export PATH=$HOME/timesys/mityarm_335x/toolchain/ccache:$HOME/timesys/mityarm_335x/toolchain/bin:$PATH
+        local toolchain=$HOME/timesys/mityarm_335x/toolchain
+        if [ ! -d $toolchain ] # if doesn't exist
+        then
+            toolchain=/net/mitydsp/export/space/timesys/mityarm335x/toolchain/
+        fi
+		export PATH=$toolchain/ccache:$toolchain/bin:$PATH
 		export CCACHE_DIR="$HOME/local/.ccache_armv7l-timesys-linux-gnueabi-"
 		export CCACHE_TEMPDIR="/dev/shm"
 		alias makearm="make ARCH=arm CROSS_COMPILE=armv7l-timesys-linux-gnueabi-"
