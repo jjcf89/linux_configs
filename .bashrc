@@ -278,8 +278,10 @@ function buildenv()
 		export CCACHE_TEMPDIR="/dev/shm"
 		alias makearm="make ARCH=arm CROSS_COMPILE=armv7l-timesys-linux-gnueabi-"
 
-		alias makeu='makearm uImage modules LOADADDR=0x80008000'
-		alias makedef='makearm omap2plus_defconfig'
+		alias makeu='makearm uImage'
+		alias makedef='makearm mityarm-335x-devkit_defconfig'
+		alias makeu2='makearm uImage modules LOADADDR=0x80008000'
+		alias makedef2='makearm omap2plus_defconfig'
 		alias maked='makearm dtbs'
 		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=armv7l-timesys-linux-gnueabi- menuconfig'
 		;;
