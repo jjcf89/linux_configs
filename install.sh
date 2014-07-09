@@ -8,7 +8,7 @@ sudo true
 
 cd ~/
 
-HOME_FILES='.bashrc .completion .gitconfig .vimrc'
+HOME_FILES='.bashrc .bash_aliases .completion .gitconfig .vimrc'
 
 for f in $HOME_FILES; do
     echo Copying $BASE/$f to .

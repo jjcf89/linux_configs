@@ -80,7 +80,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -114,13 +113,6 @@ if ! shopt -oq posix; then
 fi
 
 PATH="~/bin/:$PATH"
-
-
-alias rgrep='grep -RI --exclude-dir=.svn --exclude-dir=*.prj_files'       # Recursive grep ignoring svn files
-alias cgrep='rgrep --include=*.{c,cpp,h,py}'
-
-# Should allow sudo to run aliases
-alias sudo='sudo '
 
 # Use find to ignore symlinks
 sgrep ()
@@ -159,12 +151,7 @@ pb ()
     echo $P
 }
 
-alias scpbrcm="ssh brcm34 pkill brcm; scp ~/bin-arm/* brcm34:bin/"
-alias killcelery='ps auxww | awk " /celery/ {print \$2}" | xargs kill -9'
-
 export EDITOR=vim
-
-alias markcscopedb='export CSCOPE_DB=`pwd`'
 
 function isFedora()
 {
@@ -355,15 +342,6 @@ copyMLO()
 
 alias cpuimage='copyUImage'
 alias cpmlo='copyMLO'
-
-# Open gitk limiting history to 2k entries
-alias gitk='gitk -n2000'
-alias gcp='git cherry-pick -xs'
-# Open files in already open gvim
-alias g='gvim --remote-silent'
-
-# Git shortcuts
-alias gits='git status'
 
 #Save history immediately
 shopt -s histappend
