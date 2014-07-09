@@ -166,6 +166,12 @@ export EDITOR=vim
 
 alias markcscopedb='export CSCOPE_DB=`pwd`'
 
+function isFedora()
+{
+    [ -e /etc/redhat-release ]
+    return $?
+}
+
 function buildenv()
 {
 	local tt=$1
@@ -200,6 +206,7 @@ function buildenv()
 		;;
 
 	am335x|AM335X)
+        isFedora && (echo "TI toolchain doesn't work in fedora"; return)
 		echo Setting up CL MityARM-AM335X Build environment...
 		. /usr/local/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
 		#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
@@ -214,6 +221,7 @@ function buildenv()
 		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi- menuconfig'
 		;;
 	am335x_new)
+        isFedora && (echo "TI toolchain doesn't work in fedora"; return)
 	    echo "Setting up (07.00.00.00) CL MityARM-AM335X Build environment..."
 		. /usr/local/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
 		alias makearm="make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
