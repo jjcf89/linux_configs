@@ -159,6 +159,22 @@ function isFedora()
     return $?
 }
 
+function setMakeAliases()
+{
+    local prefix=$1
+    local defconfig=$2
+
+    alias makearm="make ARCH=arm CROSS_COMPILE=$prefix"
+    export CCACHE_DIR="$HOME/local/.ccache_$prefix"
+    export CCACHE_TEMPDIR="/dev/shm"
+    #export PATH="/usr/lib/ccache:$PATH"
+
+    alias makeu='makearm uImage'
+    alias makedef="makearm $defconfig"
+    alias makemod='makearm modules && makearm INSTALL_MOD_PATH=$PWD/ARM modules_install'
+    alias makemenu="/usr/bin/make ARCH=arm CROSS_COMPILE=$prefix menuconfig"
+}
+
 function buildenv()
 {
 	local tt=$1
@@ -171,10 +187,8 @@ function buildenv()
 	l138|L138|oe2008)
 		echo Setting up CL MityOMAP-L138 Build environment...
 		. /usr/local/angstrom/arm/environment-setup
-		alias makearm="make ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi-"
-		export CCACHE_DIR="$HOME/local/.ccache_arm-angstrom-linux-gneuabi"
-		export CCACHE_TEMPDIR="/dev/shm"
-		export PATH="/usr/lib/ccache:$PATH"
+
+        setMakeAliases arm-angstrom-linux-gnueabi- industrialio_defconfig
 		;;
     ipnc)
         echo Setting up IPNC Build environment...
@@ -190,24 +204,12 @@ function buildenv()
 	oe2012)
 		echo Setting up CL MityOMAP-L138 OE 2012 Build environment...
 		. /usr/local/oecore-i686/environment-setup-armv5te-angstrom-linux-gnueabi
-		alias makearm="make ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi-"
-		export CCACHE_DIR="$HOME/local/.ccache_arm-angstrom-linux-gnueabi"
-		export CCACHE_TEMPDIR="/dev/shm"
-		export PATH="/usr/lib/ccache:$PATH"
+
+        setMakeAliases arm-angstrom-linux-gnueabi- industrialio_defconfig
 		#cd /usr/lib/ccache
 		#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-cpp
 		#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-g++
 		#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-gcc
-
-		alias makeu='makearm uImage'
-		alias makemod='makearm modules && makearm INSTALL_MOD_PATH=$PWD/ARM modules_install'
-		alias makedef='makearm industrialio_defconfig'
-		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi- menuconfig'
-        #mkdir -p /dev/shm/l138
-		#alias makeu='makearm O=/dev/shm/l138 uImage'
-		#alias makemod='makearm O=/dev/shm/l138 modules'
-		#alias makedef='makearm O=/dev/shm/l138 industrialio_defconfig'
-		#alias makemenu='/usr/bin/make O=/dev/shm/l138 ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi- menuconfig'
 		;;
 
 	am335x|AM335X)
@@ -221,14 +223,8 @@ function buildenv()
             toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
         fi
 		. $toolchain
-		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
-		export CCACHE_DIR="$HOME/local/.ccache_arm-arago-linux-gneuabi"
-		export CCACHE_TEMPDIR="/dev/shm"
-		export PATH="/usr/lib/ccache:$PATH"
 
-		alias makeu='makearm uImage'
-		alias makedef='makearm mityarm-335x-devkit_defconfig'
-		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi- menuconfig'
+        setMakeAliases arm-arago-linux-gnueabi- mityarm-335x-devkit_defconfig
 		;;
 	am335x_new)
         isFedora && (echo "TI toolchain doesn't work in fedora"; return)
@@ -239,15 +235,12 @@ function buildenv()
             toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
         fi
 		. $toolchain
-		alias makearm="make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-"
-		export CCACHE_DIR="$HOME/local/.ccache_arm-linux-gnueabihf-"
-		export CCACHE_TEMPDIR="/dev/shm"
-		export PATH="/usr/lib/ccache:$PATH"
 
-		alias makeu='makearm uImage modules LOADADDR=0x80008000'
-		alias makedef='makearm omap2plus_defconfig'
+        setMakeAliases arm-linux-gnueabihf- mityarm-335x-devkit_defconfig
+
+		alias makeu2='makearm uImage modules LOADADDR=0x80008000'
+		alias makedef2='makearm omap2plus_defconfig'
 		alias maked='makearm dtbs'
-		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabihf- menuconfig'
 		#cd /usr/lib/ccache
 		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-cpp
 		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-g++
@@ -261,16 +254,11 @@ function buildenv()
             toolchain=/net/mitydsp/export/space/timesys/mityarm335x/toolchain/
         fi
 		export PATH=$toolchain/ccache:$toolchain/bin:$PATH
-		export CCACHE_DIR="$HOME/local/.ccache_armv7l-timesys-linux-gnueabi-"
-		export CCACHE_TEMPDIR="/dev/shm"
-		alias makearm="make ARCH=arm CROSS_COMPILE=armv7l-timesys-linux-gnueabi-"
 
-		alias makeu='makearm uImage'
-		alias makedef='makearm mityarm-335x-devkit_defconfig'
+        setMakeAliases armv7l-timesys-linux-gnueabi- mityarm-335x-devkit_defconfig
 		alias makeu2='makearm uImage modules LOADADDR=0x80008000'
 		alias makedef2='makearm omap2plus_defconfig'
 		alias maked='makearm dtbs'
-		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=armv7l-timesys-linux-gnueabi- menuconfig'
 		;;
     vanilla)
         echo Clearing make alias
