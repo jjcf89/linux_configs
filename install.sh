@@ -29,7 +29,7 @@ if [ ! -d .vim ]; then
     ln -vs $BASE/.vim .vim
 fi
 # Configure vim with git ignore file
-git config --global core.excludesfile ~/.configs/C.gitignore
+git config --global core.excludesfile $BASE/C.gitignore
 
 sudo apt-get install ccache
 # If not a symlink
