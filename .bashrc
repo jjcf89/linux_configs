@@ -113,6 +113,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+PATH="~/bin/:$PATH"
 
 #SW=~/projects/cm/trunk/sw/
 #QA=~/projects/cm/trunk/qa/
