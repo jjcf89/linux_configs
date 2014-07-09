@@ -285,6 +285,12 @@ function buildenv()
 		alias maked='makearm dtbs'
 		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=armv7l-timesys-linux-gnueabi- menuconfig'
 		;;
+    vanilla)
+        echo Clearing make alias
+        alias make='time make'
+        MAKE=/usr/bin/make
+        export QMAKESPEC=""
+        ;;
 	*)
 		echo "Toolchain TARGET_SYS = $TARGET_SYS"
 		;;
