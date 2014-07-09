@@ -200,9 +200,27 @@ function buildenv()
 		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi- menuconfig'
         ;;
 
-	oe2010)
-		echo Setting up CL MityOMAP-L138 OE 2010 Build environment...
+	oe2012)
+		echo Setting up CL MityOMAP-L138 OE 2012 Build environment...
 		. /usr/local/oecore-i686/environment-setup-armv5te-angstrom-linux-gnueabi
+		alias makearm="make ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi-"
+		export CCACHE_DIR="$HOME/local/.ccache_arm-angstrom-linux-gnueabi"
+		export CCACHE_TEMPDIR="/dev/shm"
+		export PATH="/usr/lib/ccache:$PATH"
+		#cd /usr/lib/ccache
+		#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-cpp
+		#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-g++
+		#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-gcc
+
+		alias makeu='makearm uImage'
+		alias makemod='makearm modules && makearm INSTALL_MOD_PATH=$PWD/ARM modules_install'
+		alias makedef='makearm industrialio_defconfig'
+		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi- menuconfig'
+        #mkdir -p /dev/shm/l138
+		#alias makeu='makearm O=/dev/shm/l138 uImage'
+		#alias makemod='makearm O=/dev/shm/l138 modules'
+		#alias makedef='makearm O=/dev/shm/l138 industrialio_defconfig'
+		#alias makemenu='/usr/bin/make O=/dev/shm/l138 ARCH=arm CROSS_COMPILE=arm-angstrom-linux-gnueabi- menuconfig'
 		;;
 
 	am335x|AM335X)
