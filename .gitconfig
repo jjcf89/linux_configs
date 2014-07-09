@@ -3,6 +3,7 @@
 	name = Cormier, Jonathan
 [core]
 	excludesfile = ~/.configs/C.gitignore
+    PreloadIndex = true
 [push]
     default=tracking
 [cola]
