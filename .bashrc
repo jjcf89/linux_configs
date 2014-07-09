@@ -31,12 +31,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+	debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+	xterm-color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -45,30 +45,30 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+	if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+		# We have color support; assume it's compliant with Ecma-48
+		# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+		# a case would tend to support setf rather than setaf.)
+		color_prompt=yes
+	else
+		color_prompt=
+	fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+	xterm*|rxvt*)
+		PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+		;;
+	*)
+		;;
 esac
 
 # Alias definitions.
@@ -77,19 +77,19 @@ esac
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	alias ls='ls --color=auto'
+	alias dir='dir --color=auto'
+	#alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
 fi
 
 # some more ls aliases
@@ -105,11 +105,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
+	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		. /usr/share/bash-completion/bash_completion
+	elif [ -f /etc/bash_completion ]; then
+		. /etc/bash_completion
+	fi
 fi
 
 PATH="~/bin/:$PATH"
@@ -118,22 +118,22 @@ PATH="~/bin/:$PATH"
 sgrep ()
 {
 
-    local repo_ign="-name .git -o -name .svn" 
-    find . \( -type d -a \( $repo_ign \) \) -prune -o -type f -exec grep -H --color $@ {} \;
+	local repo_ign="-name .git -o -name .svn"
+	find . \( -type d -a \( $repo_ign \) \) -prune -o -type f -exec grep -H --color $@ {} \;
 }
 
 
 MAKE=/usr/bin/make
 if [ -e /usr/bin/colormake ]; then
-    # https://github.com/pagekite/Colormake
-    MAKE=/usr/bin/colormake;
-    complete -o filenames -F _make colormake
+	# https://github.com/pagekite/Colormake
+	MAKE=/usr/bin/colormake;
+	complete -o filenames -F _make colormake
 fi
 
 # Compile using 4 cores, if failed remake with 1 core to show errors
 makej4 ()
 {
-    time $MAKE -j 7 "$@" || (echo "FAILED" && $MAKE "$@")
+	time $MAKE -j 7 "$@" || (echo "FAILED" && $MAKE "$@")
 }
 alias make=makej4
 
@@ -144,35 +144,35 @@ alias make=makej4
 # $make O=`kb`
 pb ()
 {
-    local P="~/projects/build/$(basename $(pwd))"
-    local branch="_$(git branch)" || branch=''
-    P=$P$branch
-    mkdir -p $P
-    echo $P
+	local P="~/projects/build/$(basename $(pwd))"
+	local branch="_$(git branch)" || branch=''
+	P=$P$branch
+	mkdir -p $P
+	echo $P
 }
 
 export EDITOR=vim
 
 function isFedora()
 {
-    [ -e /etc/redhat-release ]
-    return $?
+	[ -e /etc/redhat-release ]
+	return $?
 }
 
 function setMakeAliases()
 {
-    local prefix=$1
-    local defconfig=$2
+	local prefix=$1
+	local defconfig=$2
 
-    alias makearm="make ARCH=arm CROSS_COMPILE=$prefix"
-    export CCACHE_DIR="$HOME/local/.ccache_$prefix"
-    export CCACHE_TEMPDIR="/dev/shm"
-    #export PATH="/usr/lib/ccache:$PATH"
+	alias makearm="make ARCH=arm CROSS_COMPILE=$prefix"
+	export CCACHE_DIR="$HOME/local/.ccache_$prefix"
+	export CCACHE_TEMPDIR="/dev/shm"
+	#export PATH="/usr/lib/ccache:$PATH"
 
-    alias makeu='makearm uImage'
-    alias makedef="makearm $defconfig"
-    alias makemod='makearm modules && makearm INSTALL_MOD_PATH=$PWD/ARM modules_install'
-    alias makemenu="/usr/bin/make ARCH=arm CROSS_COMPILE=$prefix menuconfig"
+	alias makeu='makearm uImage'
+	alias makedef="makearm $defconfig"
+	alias makemod='makearm modules && makearm INSTALL_MOD_PATH=$PWD/ARM modules_install'
+	alias makemenu="/usr/bin/make ARCH=arm CROSS_COMPILE=$prefix menuconfig"
 }
 
 function buildenv()
@@ -184,148 +184,148 @@ function buildenv()
 		tt=""
 	fi
 	case "$tt" in
-	l138|L138|oe2008)
-		echo Setting up CL MityOMAP-L138 Build environment...
-		. /usr/local/angstrom/arm/environment-setup
+		l138|L138|oe2008)
+			echo Setting up CL MityOMAP-L138 Build environment...
+			. /usr/local/angstrom/arm/environment-setup
 
-        setMakeAliases arm-angstrom-linux-gnueabi- industrialio_defconfig
-		;;
-    ipnc)
-        echo Setting up IPNC Build environment...
-        . /export/space/jcormier/TI_IPNC_RDK_DM36x_V5.1.0/Source/dvsdk_ipnctools/linux-devkit/environment-setup
-		alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
-		export CCACHE_DIR="$HOME/local/.ccache_arm-arago-linux-gneuabi"
-		export CCACHE_TEMPDIR="/dev/shm"
-		export PATH="/usr/lib/ccache:$PATH"
+			setMakeAliases arm-angstrom-linux-gnueabi- industrialio_defconfig
+			;;
+		ipnc)
+			echo Setting up IPNC Build environment...
+			. /export/space/jcormier/TI_IPNC_RDK_DM36x_V5.1.0/Source/dvsdk_ipnctools/linux-devkit/environment-setup
+			alias makearm="make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi-"
+			export CCACHE_DIR="$HOME/local/.ccache_arm-arago-linux-gneuabi"
+			export CCACHE_TEMPDIR="/dev/shm"
+			export PATH="/usr/lib/ccache:$PATH"
 
-		alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi- menuconfig'
-        ;;
+			alias makemenu='/usr/bin/make ARCH=arm CROSS_COMPILE=arm-arago-linux-gnueabi- menuconfig'
+			;;
 
-	oe2012)
-		echo Setting up CL MityOMAP-L138 OE 2012 Build environment...
-		. /usr/local/oecore-i686/environment-setup-armv5te-angstrom-linux-gnueabi
+		oe2012)
+			echo Setting up CL MityOMAP-L138 OE 2012 Build environment...
+			. /usr/local/oecore-i686/environment-setup-armv5te-angstrom-linux-gnueabi
 
-        setMakeAliases arm-angstrom-linux-gnueabi- industrialio_defconfig
-		#cd /usr/lib/ccache
-		#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-cpp
-		#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-g++
-		#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-gcc
-		;;
+			setMakeAliases arm-angstrom-linux-gnueabi- industrialio_defconfig
+			#cd /usr/lib/ccache
+			#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-cpp
+			#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-g++
+			#sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-gcc
+			;;
 
-	am335x|AM335X)
-        isFedora && (echo "TI toolchain doesn't work in fedora"; return)
-		echo Setting up CL MityARM-AM335X Build environment...
-		#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
-		#. /usr/local/ti-sdk-am335x-evm-05.07.00.00/linux-devkit/environment-setup
-        local toolchain=/usr/local/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
-        if [ ! -d $toolchain ] # if doesn't exist
-        then
-            toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
-        fi
-		. $toolchain
+		am335x|AM335X)
+			isFedora && (echo "TI toolchain doesn't work in fedora"; return)
+			echo Setting up CL MityARM-AM335X Build environment...
+			#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
+			#. /usr/local/ti-sdk-am335x-evm-05.07.00.00/linux-devkit/environment-setup
+			local toolchain=/usr/local/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
+			if [ ! -d $toolchain ] # if doesn't exist
+			then
+				toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-05.03.02.00/linux-devkit/environment-setup
+			fi
+			. $toolchain
 
-        setMakeAliases arm-arago-linux-gnueabi- mityarm-335x-devkit_defconfig
-		;;
-	am335x_new)
-        isFedora && (echo "TI toolchain doesn't work in fedora"; return)
-	    echo "Setting up (07.00.00.00) CL MityARM-AM335X Build environment..."
-        local toolchain=/usr/local/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
-        if [ ! -d $toolchain ] # if doesn't exist
-        then
-            toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
-        fi
-		. $toolchain
+			setMakeAliases arm-arago-linux-gnueabi- mityarm-335x-devkit_defconfig
+			;;
+		am335x_new)
+			isFedora && (echo "TI toolchain doesn't work in fedora"; return)
+			echo "Setting up (07.00.00.00) CL MityARM-AM335X Build environment..."
+			local toolchain=/usr/local/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
+			if [ ! -d $toolchain ] # if doesn't exist
+			then
+				toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
+			fi
+			. $toolchain
 
-        setMakeAliases arm-linux-gnueabihf- mityarm-335x-devkit_defconfig
+			setMakeAliases arm-linux-gnueabihf- mityarm-335x-devkit_defconfig
 
-		alias makeu2='makearm uImage modules LOADADDR=0x80008000'
-		alias makedef2='makearm omap2plus_defconfig'
-		alias maked='makearm dtbs'
-		#cd /usr/lib/ccache
-		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-cpp
-		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-g++
-		#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-gcc
-		;;
-	timesys)
-		echo Setting up MityARM-AM335X Timesys build environment
-        local toolchain=$HOME/timesys/mityarm_335x/toolchain
-        if [ ! -d $toolchain ] # if doesn't exist
-        then
-            toolchain=/net/mitydsp/export/space/timesys/mityarm335x/toolchain/
-        fi
-		export PATH=$toolchain/ccache:$toolchain/bin:$PATH
+			alias makeu2='makearm uImage modules LOADADDR=0x80008000'
+			alias makedef2='makearm omap2plus_defconfig'
+			alias maked='makearm dtbs'
+			#cd /usr/lib/ccache
+			#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-cpp
+			#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-g++
+			#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-gcc
+			;;
+		timesys)
+			echo Setting up MityARM-AM335X Timesys build environment
+			local toolchain=$HOME/timesys/mityarm_335x/toolchain
+			if [ ! -d $toolchain ] # if doesn't exist
+			then
+				toolchain=/net/mitydsp/export/space/timesys/mityarm335x/toolchain/
+			fi
+			export PATH=$toolchain/ccache:$toolchain/bin:$PATH
 
-        setMakeAliases armv7l-timesys-linux-gnueabi- mityarm-335x-devkit_defconfig
-		alias makeu2='makearm uImage modules LOADADDR=0x80008000'
-		alias makedef2='makearm omap2plus_defconfig'
-		alias maked='makearm dtbs'
-		;;
-    vanilla)
-        echo Clearing make alias
-        alias make='time make'
-        MAKE=/usr/bin/make
-        export QMAKESPEC=""
-        ;;
-	*)
-		echo "Toolchain TARGET_SYS = $TARGET_SYS"
-		;;
+			setMakeAliases armv7l-timesys-linux-gnueabi- mityarm-335x-devkit_defconfig
+			alias makeu2='makearm uImage modules LOADADDR=0x80008000'
+			alias makedef2='makearm omap2plus_defconfig'
+			alias maked='makearm dtbs'
+			;;
+		vanilla)
+			echo Clearing make alias
+			alias make='time make'
+			MAKE=/usr/bin/make
+			export QMAKESPEC=""
+			;;
+		*)
+			echo "Toolchain TARGET_SYS = $TARGET_SYS"
+			;;
 	esac
 }
 
 isMounted()
 {
-    local mountPT=$1
-    mountpoint -q $mountPT
-    return $?
+	local mountPT=$1
+	mountpoint -q $mountPT
+	return $?
 }
 
 waitForMount()
 {
-    local mountPT=$1
-    while ! isMounted $mountPT; do
-	sleep .5
-    done
+	local mountPT=$1
+	while ! isMounted $mountPT; do
+		sleep .5
+	done
 }
 
 waitForSD()
 {
-    echo Insert SD Card; 
-    waitForMount /media/boot &&
-	waitForMount /media/rootfs &&
-	waitForMount /media/START_HERE
+	echo Insert SD Card;
+	waitForMount /media/boot &&
+		waitForMount /media/rootfs &&
+		waitForMount /media/START_HERE
 }
 
 umountSD()
 { 
-    # Try unmounting 3 times before erroring out
-    waitTime=1
-    dev=/dev/sdb
-    for i in $(seq 1 3);
-    do
-	umount ${dev}$i || 
-	(sleep $waitTime; umount ${dev}$i) || 
-	(sleep $waitTime; umount ${dev}$i) ||
-	    return 1
-    done
-    return 0
+	# Try unmounting 3 times before erroring out
+	waitTime=1
+	dev=/dev/sdb
+	for i in $(seq 1 3);
+	do
+		umount ${dev}$i ||
+			(sleep $waitTime; umount ${dev}$i) ||
+			(sleep $waitTime; umount ${dev}$i) ||
+			return 1
+	done
+	return 0
 }
 
 copyUImage()
 {
-    waitForSD && 
-	sleep .5 && 
-	cp -v arch/arm/boot/uImage /media/boot/ && 
-	umountSD; 
-    mount;
+	waitForSD &&
+		sleep .5 &&
+		cp -v arch/arm/boot/uImage /media/boot/ &&
+		umountSD;
+	mount;
 }
 
 copyMLO()
 {
-    waitForSD && 
-	sleep .5 && 
-	cp -v MLO u-boot.img /media/boot/ && 
-	umountSD; 
-    mount;
+	waitForSD && 
+		sleep .5 && 
+		cp -v MLO u-boot.img /media/boot/ && 
+		umountSD; 
+	mount;
 }
 
 alias cpuimage='copyUImage'
