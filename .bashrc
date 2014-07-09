@@ -115,17 +115,6 @@ fi
 
 PATH="~/bin/:$PATH"
 
-#SW=~/projects/cm/trunk/sw/
-#QA=~/projects/cm/trunk/qa/
-#UP=~/projects/cm/updates/
-#CMU=~/projects/cm/trunk/sw/cmuserver/djangoserver
-#alias cdqa="cd $QA"
-#alias cdsw="cd $SW"
-#alias cdup="cd $UP"
-#alias cdcmu="cd $CMU"
-#
-#alias svnup="svn up $SW; svn up $QA"
-#alias svnst="svn st $SW; echo 'QA'; svn st $QA"
 
 alias rgrep='grep -RI --exclude-dir=.svn --exclude-dir=*.prj_files'       # Recursive grep ignoring svn files
 alias cgrep='rgrep --include=*.{c,cpp,h,py}'
