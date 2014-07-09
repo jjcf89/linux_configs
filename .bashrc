@@ -119,6 +119,9 @@ PATH="~/bin/:$PATH"
 alias rgrep='grep -RI --exclude-dir=.svn --exclude-dir=*.prj_files'       # Recursive grep ignoring svn files
 alias cgrep='rgrep --include=*.{c,cpp,h,py}'
 
+# Should allow sudo to run aliases
+alias sudo='sudo '
+
 # Use find to ignore symlinks
 sgrep ()
 {
