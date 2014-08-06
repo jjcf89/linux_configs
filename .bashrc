@@ -213,7 +213,7 @@ function buildenv()
 			;;
 
 		am335x|AM335X)
-			isFedora && (echo "TI toolchain doesn't work in fedora"; return)
+			isFedora && { echo "TI toolchain doesn't work in fedora"; return; }
 			echo Setting up CL MityARM-AM335X Build environment...
 			#. /usr/local/ti-sdk-am335x-evm/linux-devkit/environment-setup
 			#. /usr/local/ti-sdk-am335x-evm-05.07.00.00/linux-devkit/environment-setup
@@ -227,7 +227,7 @@ function buildenv()
 			setMakeAliases arm-arago-linux-gnueabi- mityarm-335x-devkit_defconfig
 			;;
 		am335x_new)
-			isFedora && (echo "TI toolchain doesn't work in fedora"; return)
+			isFedora && { echo "TI toolchain doesn't work in fedora"; return; }
 			echo "Setting up (07.00.00.00) CL MityARM-AM335X Build environment..."
 			local toolchain=/usr/local/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
 			if [ ! -d $toolchain ] # if doesn't exist
