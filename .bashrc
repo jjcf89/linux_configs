@@ -260,6 +260,10 @@ function buildenv()
 			alias makedef2='makearm omap2plus_defconfig'
 			alias maked='makearm dtbs'
 			;;
+		android)
+			export PATH=~/bin/android-studio/bin:$PATH
+			export JAVA_HOME=/etc/alternatives/java_sdk
+			;;
 		vanilla)
 			echo Clearing make alias
 			alias make='time make'
