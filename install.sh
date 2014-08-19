@@ -18,7 +18,7 @@ for f in $HOME_FILES; do
     fi
 done
 
-sudo apt-get install vim git subversion
+sudo apt-get install -y vim git subversion
 echo Copying .vim directory
 # If not a symlink and directory exists
 if [ ! -L .vim ] && [ -d .vim ]; then
@@ -31,7 +31,7 @@ fi
 # Configure vim with git ignore file
 git config --global core.excludesfile $BASE/C.gitignore
 
-sudo apt-get install ccache
+sudo apt-get install -y ccache
 # If not a symlink
 [ ! -L /usr/lib/ccache/arm-arago-linux-gnueabi-gcc ] && (
 cd /usr/lib/ccache/
@@ -45,3 +45,9 @@ sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-g++
 
 cd $BASE
 git submodule update --init --recursive
+
+sudo apt-get install -y build-essential cmake python-dev
+(
+    cd .vim/bundle/YouCompleteMe
+    ./install.sh --clang-completer
+)
