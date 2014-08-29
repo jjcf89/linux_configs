@@ -18,6 +18,8 @@ for f in $HOME_FILES; do
     fi
 done
 
+cp -vs --suffix=.bak $BASE/.ssh/config .ssh/
+
 sudo apt-get install vim git subversion
 echo Copying .vim directory
 # If not a symlink and directory exists
