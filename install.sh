@@ -56,5 +56,5 @@ sudo apt-get install -y build-essential cmake python-dev
 
 (
     cd powerline-shell/
-    ./install-powerline.sh
+    ./install_powerline.sh
 )
