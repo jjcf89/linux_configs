@@ -19,6 +19,3 @@
 [submodule ".vim/bundle/YouCompleteMe"]
 	path = .vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
-[submodule "powerline-shell/powerline-shell"]
-	path = powerline-shell/powerline-shell
-	url = https://github.com/milkbikis/powerline-shell.git
