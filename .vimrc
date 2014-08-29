@@ -362,13 +362,14 @@ function LoadCscope()
         if (!empty(UpperPath))
             let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)   
             if (!empty(path))
-                let s:CscopeAddString = "cs add " . UpperPath . " " . path 
-                execute s:CscopeAddString 
+                let CscopeAddString = "cs add " . UpperPath . " " . path 
+                execute CscopeAddString 
             endif
         endif
     endif
 endfunction
 command LoadCscope call LoadCscope()
+set cscoperelative
 
 """
 "My settings
