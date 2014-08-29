@@ -6,7 +6,7 @@ sudo apt-get install python
 
 cd powerline-shell-qwindelzorf/
 
-cp config.py.dist config.py
+cp ../config.py config.py
 ./install.py
 
 ln -fvs $PWD/powerline-shell.py ~/.powerline-shell.py
