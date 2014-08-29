@@ -59,7 +59,13 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
-if [ -x ~/.powerline-shell.py ]; then
+test_powerline-shell()
+{
+    ~/.powerline-shell.py 1> /dev/null 
+    return $?
+}
+
+if [ -x ~/.powerline-shell.py ] && test_powerline-shell; then
 
     function _update_ps1() {
 	export PS1="$(~/.powerline-shell.py $? 2> /dev/null)"
