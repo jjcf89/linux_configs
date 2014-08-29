@@ -16,6 +16,9 @@ alias gcp='git cherry-pick -xs'
 # Open gitk limiting history to 2k entries
 alias gitk='gitk -n2000'
 
+#### SVN shortcuts
+alias svndiff='svn diff | less'
+
 #### Misc
 alias cdwork="cd /data/work"
 
