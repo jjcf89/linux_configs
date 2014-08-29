@@ -4,7 +4,7 @@ sudo apt-get install python
 
 ./install_fonts.sh
 
-cd powerline-shell/
+cd powerline-shell-qwindelzorf/
 
 cp config.py.dist config.py
 ./install.py
