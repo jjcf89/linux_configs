@@ -68,7 +68,11 @@ test_powerline-shell()
 if [ -x ~/.powerline-shell.py ] && test_powerline-shell; then
 
     function _update_ps1() {
-	export PS1="$(~/.powerline-shell.py $? 2> /dev/null)"
+	TMP="$(~/.powerline-shell.py --cwd-max-depth 3 $? 2> /dev/null)"
+	if [ "$?" -ne "0" ]; then
+	    TMP='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	fi
+	export PS1=$TMP
     }
 
     export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
