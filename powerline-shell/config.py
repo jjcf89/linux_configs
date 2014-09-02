@@ -23,7 +23,7 @@ SEGMENTS = [
     'ssh',
 
     # Show the machine's hostname. Mostly used when ssh-ing into other machines
-    'hostname',
+    #'hostname',
 
     # Show the current directory. If the path is too long, the middle part is replaced with ellipsis ('...')
     'cwd',
