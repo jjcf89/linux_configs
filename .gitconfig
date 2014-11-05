@@ -18,3 +18,5 @@
     s = status
 [branch]
 	autosetupmerge = true
+[merge]
+	renamelimit = 5000
