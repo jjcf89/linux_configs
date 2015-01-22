@@ -28,6 +28,8 @@ flags = [
 'c',
 '-I',
 '.',
+'-I',
+'include',
 '-isystem',
 '/usr/include',
 '-isystem',
