@@ -16,7 +16,10 @@ alias markcscopedb='export CSCOPE_DB=`pwd`'
 alias gits='git status'
 alias gcp='git cherry-pick -xs'
 # Open gitk limiting history to 2k entries
-alias gitk='gitk -n2000'
+function gitk_launch() {
+    gitk -n2000 $@ &
+}
+alias gitk='gitk_launch'
 
 #### SVN shortcuts
 alias svndiff='svn diff | less'
@@ -26,3 +29,4 @@ alias cdwork="cd /data/work"
 
 # Should allow sudo to run aliases
 alias sudo='sudo '
+
