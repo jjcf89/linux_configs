@@ -1,3 +1,5 @@
+alias umountall='sudo umount /media/jcormier/*'
+
 #### Search shortcuts
 alias rgrep='grep -RI --exclude-dir=.svn --exclude-dir=*.prj_files'       # Recursive grep ignoring svn files
 alias cgrep='rgrep --include=*.{c,cpp,h,py}'
