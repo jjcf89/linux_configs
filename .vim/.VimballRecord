@@ -1,0 +1,1 @@
+LargeFile.vba: call delete('/home/jcormier/.vim/plugin/LargeFile.vim')|call delete('/home/jcormier/.vim/doc/LargeFile.txt')
