@@ -1,13 +1,60 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle Install
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+"" a Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-fugitive'
+"" Syntastic is a syntax checking plugin for Vim
+Plugin 'scrooloose/syntastic'
+"" Lean & mean status/tabline for vim that's light as air.
+Plugin 'bling/vim-airline'
+"" A code-completion engine for Vim
+Plugin 'Valloric/YouCompleteMe'
+"" Provides easy code formatting in Vim by integrating existing code formatters. 
+Plugin 'Chiel92/vim-autoformat'
+"" A dark colourscheme for Vim created for fun
+Plugin 'Pychimp/vim-luna'
+"" A fancy start screen for Vim.
+Plugin 'mhinz/vim-startify'
+"" Vastly improved Javascript indentation and syntax support in Vim. 
+Plugin 'pangloss/vim-javascript'
+
+" plugin from http://vim-scripts.org/vim/scripts.html
+"Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Sets how many lines of history VIM has to remember
 set history=700
-
-" Recommended for pathogen
-runtime pathogen/autoload/pathogen.vim
-set sessionoptions-=options
-execute pathogen#infect()
 
 " Enable filetype plugin
 filetype plugin on

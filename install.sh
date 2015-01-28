@@ -47,6 +47,8 @@ sudo ln -s ../../bin/ccache arm-angstrom-linux-gnueabi-g++
 
 cd $BASE
 git submodule update --init --recursive
+# Install VUNDLE plugins
+vim -i NONE -c PluginInstall -c qall
 
 sudo apt-get install -y build-essential cmake python-dev
 (
