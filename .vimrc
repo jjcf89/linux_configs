@@ -27,6 +27,8 @@ Plugin 'Pychimp/vim-luna'
 Plugin 'mhinz/vim-startify'
 "" Vastly improved Javascript indentation and syntax support in Vim. 
 Plugin 'pangloss/vim-javascript'
+"" Vim plugin to respect the Linux kernel coding style 
+Plugin 'vim-scripts/linuxsty.vim'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
