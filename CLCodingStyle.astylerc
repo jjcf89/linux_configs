@@ -1,0 +1,6 @@
+--style=allman
+--add-brackets
+--indent=force-tab=4
+--brackets=break
+--preserve-date
+--max-code-length=100
