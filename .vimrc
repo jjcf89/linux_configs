@@ -52,6 +52,14 @@ filetype plugin indent on    " required
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => YCM
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"where to search for .ycm_extra_conf.py if not found
+let g:ycm_global_ycm_extra_conf = '~/.configs/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
