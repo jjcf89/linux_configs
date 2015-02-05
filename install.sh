@@ -50,7 +50,7 @@ git submodule update --init --recursive
 # Install VUNDLE plugins
 vim -i NONE -c PluginInstall -c qall
 
-sudo apt-get install -y build-essential cmake python-dev
+sudo apt-get install -y build-essential cmake python-dev shellcheck
 (
     cd .vim/bundle/YouCompleteMe
     ./install.sh --clang-completer
