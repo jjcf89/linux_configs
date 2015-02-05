@@ -138,7 +138,7 @@ if ! shopt -oq posix; then
 	fi
 fi
 
-PATH="~/bin/:$PATH"
+PATH="$HOME/bin/:$PATH"
 
 # Use find to ignore symlinks
 sgrep ()
@@ -170,11 +170,11 @@ alias make=makej4
 # $make O=`kb`
 pb ()
 {
-	local P="~/projects/build/$(basename $(pwd))"
+	local P="$HOME/projects/build/$(basename "$(pwd)")"
 	local branch="_$(git branch)" || branch=''
 	P=$P$branch
-	mkdir -p $P
-	echo $P
+	mkdir -p "$P"
+	echo "$P"
 }
 
 export EDITOR=vim
@@ -275,7 +275,7 @@ function buildenv()
 		timesys)
 			echo Setting up MityARM-AM335X Timesys build environment
 			local toolchain=$HOME/timesys/mityarm_335x/toolchain
-			if [ ! -d $toolchain ] # if doesn't exist
+			if [ ! -d "$toolchain" ] # if doesn't exist
 			then
 				toolchain=/net/mitydsp/export/space/timesys/mityarm335x/toolchain/
 			fi
@@ -305,14 +305,14 @@ function buildenv()
 isMounted()
 {
 	local mountPT=$1
-	mountpoint -q $mountPT
+	mountpoint -q "$mountPT"
 	return $?
 }
 
 waitForMount()
 {
 	local mountPT=$1
-	while ! isMounted $mountPT; do
+	while ! isMounted "$mountPT"; do
 		sleep .5
 	done
 }
@@ -327,9 +327,9 @@ fi
 waitForSD()
 {
 	echo Insert SD Card;
-	waitForMount $mountDir/boot &&
-		waitForMount $mountDir/rootfs &&
-		waitForMount $mountDir/START_HERE
+	waitForMount "$mountDir/boot" &&
+		waitForMount "$mountDir/rootfs" &&
+		waitForMount "$mountDir/START_HERE"
 	sleep .5
 }
 
@@ -337,7 +337,7 @@ umountSD()
 { 
 	# Try unmounting 3 times before erroring out
 	waitTime=1
-	umount $mountDir/* ||
+	umount "$mountDir"/* ||
 		(sleep $waitTime; umount $mountDir/*) ||
 		(sleep $waitTime; umount $mountDir/*) ||
 		return 1
@@ -347,7 +347,7 @@ umountSD()
 copyUImage()
 {
 	waitForSD &&
-		cp -v arch/arm/boot/uImage $mountDir/boot/ &&
+		cp -v arch/arm/boot/uImage "$mountDir/boot/" &&
 		umountSD;
 	mount | grep media
 }
@@ -355,7 +355,7 @@ copyUImage()
 copyMLO()
 {
 	waitForSD && 
-		cp -v MLO u-boot.img $mountDir/boot/ && 
+		cp -v MLO u-boot.img "$mountDir/boot/" && 
 		umountSD; 
 	mount | grep media
 }
