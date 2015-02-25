@@ -33,3 +33,4 @@ include/config
 *.ko
 vmlinux
 
+Session.vim
