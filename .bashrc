@@ -5,7 +5,6 @@
 # If not running interactively, don't do anything
 if [ -z "$PS1" ] 
 then
-	echo Non-Interactive shell >&2
 	return
 fi
 
