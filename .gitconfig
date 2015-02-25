@@ -3,9 +3,9 @@
 	name = Cormier, Jonathan
 [core]
 	excludesfile = ~/.configs/C.gitignore
-    PreloadIndex = true
+	PreloadIndex = true
 [push]
-    default=tracking
+	default=tracking
 [cola]
 	tabwidth = 4
 [giggle]
@@ -15,7 +15,7 @@
 	unstage = reset HEAD --
 	co = checkout
 	ci = commit
-    s = status
+	s = status
 [branch]
 	autosetupmerge = true
 [merge]
