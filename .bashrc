@@ -58,25 +58,9 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
-test_powerline-shell()
+set_old_ps()
 {
-    ~/.powerline-shell.py 1> /dev/null 
-    return $?
-}
-
-if [ -x ~/.powerline-shell.py ] && test_powerline-shell; then
-
-    function _update_ps1() {
-	TMP="$(~/.powerline-shell.py --cwd-max-depth 3 $? 2> /dev/null)"
-	if [ "$?" -ne "0" ]; then
-	    TMP='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-	fi
-	export PS1=$TMP
-    }
-
-    export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-
-else
+    export PROMPT_COMMAND="$OLD_PROMPT_COMMAND"
 
     if [ "$color_prompt" = yes ]; then
 	    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -93,7 +77,29 @@ else
 	    *)
 		    ;;
     esac
+}
 
+test_powerline-shell()
+{
+    ~/.powerline-shell.py 1> /dev/null 
+    return $?
+}
+
+if [ -x ~/.powerline-shell.py ] && test_powerline-shell; then
+
+    function _update_ps1() {
+	TMP="$(~/.powerline-shell.py --cwd-max-depth 3 $? 2> /dev/null)"
+	if [ "$?" -ne "0" ]; then
+	    TMP='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+	fi
+	export PS1=$TMP
+    }
+
+    export OLD_PROMPT_COMMAND="$PROMPT_COMMAND"
+    export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+
+else
+    set_old_ps
 fi
 
 # Alias definitions.
