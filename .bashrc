@@ -259,11 +259,11 @@ function buildenv()
 			;;
 		am335x_new)
 			isFedora && { echo "TI toolchain doesn't work in fedora"; return; }
-			echo "Setting up (07.00.00.00) CL MityARM-AM335X Build environment..."
-			local toolchain=/usr/local/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
+			echo "Setting up (08.00.00.00) CL MityARM-AM335X Build environment..."
+			local toolchain=/opt/ti-sdk-am335x-evm-08.00.00.00/linux-devkit/environment-setup
 			if [ ! -d $toolchain ] # if doesn't exist
 			then
-				toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-07.00.00.00/linux-devkit/environment-setup
+				toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-08.00.00.00/linux-devkit/environment-setup
 			fi
 			. $toolchain
 
