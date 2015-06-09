@@ -29,6 +29,8 @@ Plugin 'mhinz/vim-startify'
 Plugin 'pangloss/vim-javascript'
 "" Vim plugin to respect the Linux kernel coding style 
 Plugin 'vim-scripts/linuxsty.vim'
+"" frontend for ag
+Plugin 'rking/ag.vim'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
