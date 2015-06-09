@@ -265,12 +265,14 @@ function buildenv()
 			then
 				toolchain=/net/mitydsp/export/space/ti-sdk-am335x-evm-08.00.00.00/linux-devkit/environment-setup
 			fi
-			. $toolchain
+			# Dont source toolchain for kernel
+			#. $toolchain
+			export PATH=/opt/ti-sdk-am335x-evm-08.00.00.00/linux-devkit/sysroots/i686-arago-linux/usr/bin:$PATH
 
 			setMakeAliases arm-linux-gnueabihf- mityarm-335x-devkit_defconfig
 
-			alias makeu2='makearm uImage modules LOADADDR=0x80008000'
-			alias makedef2='makearm omap2plus_defconfig'
+			alias makez='makearm zImage modules'
+			alias makedef2='makearm singlecore-omap2plus_defconfig'
 			alias maked='makearm dtbs'
 			#cd /usr/lib/ccache
 			#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-cpp
