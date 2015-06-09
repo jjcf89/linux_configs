@@ -34,3 +34,4 @@ include/config
 vmlinux
 
 Session.vim
+.fuse_hidden*
