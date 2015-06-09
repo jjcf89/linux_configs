@@ -1,6 +1,6 @@
 [submodule "powerline-shell/powerline-shell-qwindelzorf"]
 	path = powerline-shell/powerline-shell-qwindelzorf
-	url = https://github.com/qwindelzorf/powerline-shell.git
+	url = wanda:~jcormier/git/powerline-shell
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
