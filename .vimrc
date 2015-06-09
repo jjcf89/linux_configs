@@ -454,6 +454,8 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 
 let g:pymode_run_key = 'R'
 
+nnoremap <c-b> :make<cr>
+
 colorscheme luna
 
 "Create mapping that runs current file as command
