@@ -295,6 +295,10 @@ function buildenv()
 			export PATH=~/bin/android-studio/bin:$PATH
 			export JAVA_HOME=/etc/alternatives/java_sdk
 			;;
+		socfpga|5csx)
+			/opt/altera/14.1/embedded/embedded_command_shell.sh
+			alias eclipse="/usr/bin/eclipse"
+			;;
 		vanilla)
 			echo Clearing make alias
 			alias make='time make'
