@@ -389,4 +389,7 @@ export PATH="/usr/lib/ccache:$PATH"
 
 #source ~/.completion
 
+# Causes missing command to prompt to be installed
+export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
+
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
