@@ -466,5 +466,10 @@ nnoremap <c-b> :make<cr>
 
 colorscheme luna
 
+function! RemoveKernelTiming()
+    execute "%s/\\[\\s*\\d*\\.\\d*\\]/[]/g"
+endfunction
+command! RemoveKernelTiming call RemoveKernelTiming()
+
 "Create mapping that runs current file as command
 map <leader>r :!./%
