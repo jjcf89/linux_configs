@@ -436,7 +436,7 @@ map <leader>bb :cd ..<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CSCOPE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function LoadCscope()
+function! LoadCscope()
     if (executable("cscope") && has("cscope"))
         let UpperPath = findfile("cscope.out", ".;")
         if (!empty(UpperPath))
@@ -448,7 +448,7 @@ function LoadCscope()
         endif
     endif
 endfunction
-command LoadCscope call LoadCscope()
+command! LoadCscope call LoadCscope()
 set cscoperelative
 
 """
