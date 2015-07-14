@@ -393,3 +393,6 @@ export PATH="/usr/lib/ccache:$PATH"
 export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+#MINICOM Enable color mode and use of Meta <Alt> keys
+export MINICOM='-m -c on'
