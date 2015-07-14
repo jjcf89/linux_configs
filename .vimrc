@@ -13,6 +13,8 @@ Plugin 'gmarik/Vundle.vim'
 " plugin on GitHub repo
 "" a Git wrapper so awesome, it should be illegal
 Plugin 'tpope/vim-fugitive'
+"" This is a simple plugin that helps to end certain structures automatically
+Plugin 'tpope/vim-endwise'
 "" Syntastic is a syntax checking plugin for Vim
 Plugin 'scrooloose/syntastic'
 "" Lean & mean status/tabline for vim that's light as air.
@@ -31,6 +33,10 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'vim-scripts/linuxsty.vim'
 "" frontend for ag
 Plugin 'rking/ag.vim'
+"" Tagbar is a Vim plugin that provides an easy way to browse the tags of the current file
+Plugin 'majutsushi/tagbar'
+"" Insert or delete brackets, parens, quotes in pair
+Plugin 'jiangmiao/auto-pairs'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
