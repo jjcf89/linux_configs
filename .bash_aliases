@@ -27,6 +27,9 @@ alias svndiff='svn diff | less'
 #### Misc
 alias cdwork="cd /data/work"
 
+alias sync="time sync"
+alias umount="time umount"
+
 # Should allow sudo to run aliases
 alias sudo='sudo '
 
