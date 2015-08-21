@@ -164,10 +164,30 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set noexpandtab
-set shiftwidth=4
-set tabstop=8
+
+" Use tabs
+let my_tab=4
+set tabstop=4
 set smarttab
+
+" Values toggled
+set noexpandtab
+execute "set shiftwidth=".my_tab
+execute "set softtabstop=0"
+
+" allow toggling between local and default mode
+function! TabToggle()
+    if &expandtab
+        execute "set shiftwidth=".g:my_tab
+        execute "set softtabstop=0"
+        set noexpandtab
+    else
+        execute "set shiftwidth=".g:my_tab
+        execute "set softtabstop=".g:my_tab
+        set expandtab
+    endif
+endfunction
+nmap <F9> mz:execute TabToggle()<CR>'z
 
 set lbr
 set tw=500
