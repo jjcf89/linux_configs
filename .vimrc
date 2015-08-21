@@ -401,6 +401,12 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
+" https://dev.launchpad.net/UltimateVimPythonSetup
+if !exists("autocommands_loaded")
+  let autocommands_loaded = 1
+  autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
+endif
+
 """"""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
@@ -493,3 +499,6 @@ command! RemoveKernelTiming call RemoveKernelTiming()
 
 "Create mapping that runs current file as command
 map <leader>r :!./%
+
+" This beauty remembers where you were the last time you edited the file, and returns to the same position.
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
