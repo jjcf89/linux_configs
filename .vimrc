@@ -164,10 +164,30 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set noexpandtab
-set shiftwidth=4
-set tabstop=8
+
+" Use tabs
+let my_tab=4
+set tabstop=4
 set smarttab
+
+" Values toggled
+set noexpandtab
+execute "set shiftwidth=".my_tab
+execute "set softtabstop=0"
+
+" allow toggling between local and default mode
+function! TabToggle()
+    if &expandtab
+        execute "set shiftwidth=".g:my_tab
+        execute "set softtabstop=0"
+        set noexpandtab
+    else
+        execute "set shiftwidth=".g:my_tab
+        execute "set softtabstop=".g:my_tab
+        set expandtab
+    endif
+endfunction
+nmap <F9> mz:execute TabToggle()<CR>'z
 
 set lbr
 set tw=500
@@ -381,6 +401,12 @@ au FileType python map <buffer> <leader>2 /def
 au FileType python map <buffer> <leader>C ?class
 au FileType python map <buffer> <leader>D ?def
 
+" https://dev.launchpad.net/UltimateVimPythonSetup
+if !exists("autocommands_loaded")
+  let autocommands_loaded = 1
+  autocmd BufRead,BufNewFile,FileReadPost *.py source ~/.vim/python
+endif
+
 """"""""""""""""""""""""""""""
 " => JavaScript section
 """""""""""""""""""""""""""""""
@@ -473,3 +499,6 @@ command! RemoveKernelTiming call RemoveKernelTiming()
 
 "Create mapping that runs current file as command
 map <leader>r :!./%
+
+" This beauty remembers where you were the last time you edited the file, and returns to the same position.
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
