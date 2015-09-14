@@ -201,9 +201,11 @@ function setMakeAliases()
 	#export PATH="/usr/lib/ccache:$PATH"
 
 	alias makeu='makearm uImage'
+	alias makez='makearm zImage'
 	alias makedef="makearm $defconfig"
 	alias makemod='makearm modules && makearm INSTALL_MOD_PATH=$PWD/ARM modules_install'
 	alias makemenu="/usr/bin/make ARCH=arm CROSS_COMPILE=$prefix menuconfig"
+	alias maked='makearm dtbs'
 }
 
 function buildenv()
@@ -271,9 +273,7 @@ function buildenv()
 
 			setMakeAliases arm-linux-gnueabihf- mityarm-335x-devkit_defconfig
 
-			alias makez='makearm zImage modules'
 			alias makedef2='makearm singlecore-omap2plus_defconfig'
-			alias maked='makearm dtbs'
 			#cd /usr/lib/ccache
 			#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-cpp
 			#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-g++
@@ -291,7 +291,6 @@ function buildenv()
 			setMakeAliases armv7l-timesys-linux-gnueabi- mityarm-335x-devkit_defconfig
 			alias makeu2='makearm uImage modules LOADADDR=0x80008000'
 			alias makedef2='makearm omap2plus_defconfig'
-			alias maked='makearm dtbs'
 			;;
 		android)
 			export PATH=~/bin/android-studio/bin:$PATH
