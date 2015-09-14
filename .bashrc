@@ -292,6 +292,15 @@ function buildenv()
 			alias makeu2='makearm uImage modules LOADADDR=0x80008000'
 			alias makedef2='makearm omap2plus_defconfig'
 			;;
+		timesys_distcc)
+			echo Setting up MityARM-AM335X Timesys distcc build environment
+			toolchain=/net/mitydsp/export/space/timesys/mityarm335x/toolchain/
+			export PATH=$toolchain/ccache:$toolchain/bin:$PATH
+
+			setMakeAliases "distcc $toolchain/bin/armv7l-timesys-linux-gnueabi-" mityarm-335x-devkit_defconfig
+			alias makeu2='makearm uImage modules LOADADDR=0x80008000'
+			alias makedef2='makearm omap2plus_defconfig'
+			;;
 		android)
 			export PATH=~/bin/android-studio/bin:$PATH
 			export JAVA_HOME=/etc/alternatives/java_sdk
