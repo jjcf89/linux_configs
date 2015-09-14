@@ -467,7 +467,7 @@ nnoremap <c-b> :make<cr>
 colorscheme luna
 
 function! RemoveKernelTiming()
-    execute "%s/\\[\\s*\\d*\\.\\d*\\]/[]/g"
+    execute "%s/\\[\\s*\\d*\\.\\d*\\s*\\]/[]/g"
 endfunction
 command! RemoveKernelTiming call RemoveKernelTiming()
 
