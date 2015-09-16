@@ -33,5 +33,7 @@ include/config
 *.ko
 vmlinux
 
+# Custom
 Session.vim
 .fuse_hidden*
+ARM/

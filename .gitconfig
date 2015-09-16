@@ -2,7 +2,7 @@
 	email = jcormier@criticallink.com
 	name = Cormier, Jonathan
 [core]
-	excludesfile = ~/.configs/C.gitignore
+	excludesfile = /home/jcormier/.configs/C.gitignore
 	PreloadIndex = true
 [push]
 	default=tracking
