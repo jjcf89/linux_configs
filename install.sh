@@ -8,7 +8,7 @@ sudo true
 
 cd ~/
 
-HOME_FILES='.bashrc .bash_aliases .completion .conkyrc .gitconfig .vimrc .astylerc'
+HOME_FILES='.bashrc .bashrc_buildenv .bash_aliases .completion .conkyrc .gitconfig .vimrc .astylerc'
 
 for f in $HOME_FILES; do
     echo Copying $BASE/$f to .
