@@ -4,6 +4,8 @@
 [core]
 	excludesfile = /home/jcormier/.configs/C.gitignore
 	PreloadIndex = true
+	# Shorten sha to 12 characters
+	abbrev = 12
 [push]
 	default=tracking
 [cola]
@@ -24,3 +26,6 @@
 	renamelimit = 5000
 [color]
 	ui = auto
+[pretty]
+	# Create fixes tag
+	fixes = Fixes: %h (\"%s\")
