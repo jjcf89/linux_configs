@@ -1,0 +1,22 @@
+# Install at /etc/udev/rules.d/99-usb-serial.rules
+
+# Skip over rule if device isn't tty
+ACTION!="add", GOTO="serial_rules_end"
+SUBSYSTEM!="tty" GOTO="serial_rules_end"
+
+# Assign static tty names for serial devices
+
+# 4 port MosChip Semiconductor MCS7820/MCS7840 2/4 port serial adapter
+# USB ID 9710:7840
+
+ATTRS{idVendor}=="9710", ATTRS{idProduct}=="7840", GOTO="moschip_rules_begin"
+GOTO="moschip_rules_end"
+LABEL="moschip_rules_begin"
+
+ATTRS{port_number}=="0", SYMLINK+="ttySerial0"
+ATTRS{port_number}=="1", SYMLINK+="ttySerial1"
+ATTRS{port_number}=="2", SYMLINK+="ttySerial2"
+ATTRS{port_number}=="3", SYMLINK+="ttySerial3"
+
+LABEL="moschip_rules_end"
+LABEL="serial_rules_end"
