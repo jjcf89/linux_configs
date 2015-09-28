@@ -37,6 +37,8 @@ Plugin 'rking/ag.vim'
 Plugin 'majutsushi/tagbar'
 "" Insert or delete brackets, parens, quotes in pair
 Plugin 'jiangmiao/auto-pairs'
+"" Edit Files using sudo or su or any other tool
+Plugin 'chrisbra/SudoEdit.vim'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
