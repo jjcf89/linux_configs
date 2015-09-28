@@ -155,7 +155,11 @@ function buildenv()
 			alias makedef2='makearm omap2plus_defconfig'
 			;;
 		android)
-			export PATH=~/bin/android-studio/bin:$PATH
+			# Launch android studio - studio.sh
+			# http://developer.android.com/sdk/index.html
+			# Launch intellij - idea.sh
+			# https://www.jetbrains.com/idea/help/basics-and-installation.html
+			export PATH=~/local/android-studio/bin:~/local/idea-IC-141.1532.4/bin:$PATH
 			export JAVA_HOME=/etc/alternatives/java_sdk
 			;;
 		socfpga|5csx)
