@@ -6,6 +6,7 @@
 	PreloadIndex = true
 	# Shorten sha to 12 characters
 	abbrev = 12
+	autocrlf = input
 [push]
 	default=tracking
 [cola]
