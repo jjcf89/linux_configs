@@ -151,6 +151,21 @@ function buildenv()
 			#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-g++
 			#sudo ln -s ../../bin/ccache arm-linux-gnueabihf-gcc
 			;;
+		yocto)
+			echo Setting up MityARM-AM335X yocto build environment
+			local toolchain=/export/space/jcormier/mitysom-335x_20160113/sysroots/i686-clsdk-linux
+
+			if [ ! -d "$toolchain" ] # if doesn't exist
+			then
+				toolchain=/net/mitydsp/export/space/timesys/mityarm335x/toolchain/
+			fi
+			export PATH=$toolchain/usr/bin:$toolchain/usr/bin/arm-criticallink-linux-gnueabi:$PATH
+			#. $toolchain/../../environment-setup-cortexa8t2hf-vfp-neon-criticallink-linux-gnueabi
+
+			setMakeAliases arm-criticallink-linux-gnueabi- mityarm-335x-devkit_defconfig
+			alias makedef='makearm $(setMakeDefAM335x)'
+			alias makedef2='makearm omap2plus_defconfig'
+			;;
 		timesys)
 			echo Setting up MityARM-AM335X Timesys build environment
 			local toolchain=$HOME/timesys/mityarm_335x/toolchain
