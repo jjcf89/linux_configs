@@ -186,8 +186,21 @@ function buildenv()
 			export PATH=$toolchain/ccache:$toolchain/bin:$PATH
 
 			setMakeAliases "distcc $toolchain/bin/armv7l-timesys-linux-gnueabi-" mityarm-335x-devkit_defconfig
-			alias makedef="setMakeDefAM335x"
+			alias makedef='makearm $(setMakeDefAM335x)'
 			alias makeu2='makearm uImage modules LOADADDR=0x80008000'
+			alias makedef2='makearm omap2plus_defconfig'
+			;;
+		linaro)
+			echo Setting up MityARM-AM335X Linaro build environment
+			local toolchain=/opt/gcc-linaro-4.9-2015.05-x86_64_arm-linux-gnueabihf
+			#if [ ! -d "$toolchain" ] # if doesn't exist
+			#then
+			#	toolchain=/net/mitydsp/export/space/timesys/mityarm335x/toolchain/
+			#fi
+			export PATH=$toolchain/bin:$PATH
+
+			setMakeAliases arm-linux-gnueabihf- mityarm-335x-devkit_defconfig
+			alias makedef='makearm $(setMakeDefAM335x)'
 			alias makedef2='makearm omap2plus_defconfig'
 			;;
 		android)
