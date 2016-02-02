@@ -37,3 +37,9 @@
 	smtpUser = jcormier@criticallink.com
 	smtpServerPort = 587
 	confirm = always
+[tig "bind"]
+	# Disable git-gc keybinding
+	generic = G none
+	# Cherry-pick with signoff and commit number
+	main = C none
+	generic = C !git cherry-pick -xs %(commit)
