@@ -51,8 +51,8 @@ function setMakeDefAM335x()
 	do
 		if [ -e "arch/arm/configs/$defconfig" ]
 		then
-			echo Defconfig - "$defconfig"
-			makearm "$defconfig"
+			echo Defconfig - "$defconfig" >&2;
+			echo "$defconfig"
 			return
 		fi
 	done
@@ -128,7 +128,7 @@ function buildenv()
 			. $toolchain
 
 			setMakeAliases arm-arago-linux-gnueabi- mityarm-335x-devkit_defconfig
-			alias makedef="setMakeDefAM335x"
+			alias makedef='makearm $(setMakeDefAM335x)'
 			;;
 		am335x_new)
 			isFedora && { echo "TI toolchain doesn't work in fedora"; return; }
@@ -143,7 +143,7 @@ function buildenv()
 			export PATH=/opt/ti-sdk-am335x-evm-08.00.00.00/linux-devkit/sysroots/i686-arago-linux/usr/bin:$PATH
 
 			setMakeAliases arm-linux-gnueabihf- mityarm-335x-devkit_defconfig
-			alias makedef="setMakeDefAM335x"
+			alias makedef='makearm $(setMakeDefAM335x)'
 
 			alias makedef2='makearm singlecore-omap2plus_defconfig'
 			#cd /usr/lib/ccache
@@ -161,7 +161,7 @@ function buildenv()
 			export PATH=$toolchain/ccache:$toolchain/bin:$PATH
 
 			setMakeAliases armv7l-timesys-linux-gnueabi- mityarm-335x-devkit_defconfig
-			alias makedef="setMakeDefAM335x"
+			alias makedef='makearm $(setMakeDefAM335x)'
 			alias makeu2='makearm uImage modules LOADADDR=0x80008000'
 			alias makedef2='makearm omap2plus_defconfig'
 			;;
