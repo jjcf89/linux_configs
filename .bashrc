@@ -165,6 +165,10 @@ export PATH="/usr/lib/ccache:$PATH"
 
 #source ~/.completion
 
+# Add completions for android and repo commands
+source ~/.configs/android-completion/android
+source ~/.configs/android-completion/repo
+
 # Causes missing command to prompt to be installed
 export COMMAND_NOT_FOUND_INSTALL_PROMPT=1
 
