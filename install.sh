@@ -18,6 +18,8 @@ for f in $HOME_FILES; do
     fi
 done
 
+cp -vs --suffix=.bak $BASE/.xsessionrc .Xresources
+
 cp -vs --suffix=.bak $BASE/.ssh/config .ssh/
 
 sudo apt-get install -y vim git subversion
