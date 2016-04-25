@@ -8,7 +8,7 @@
 	abbrev = 12
 	autocrlf = input
 [push]
-	default=tracking
+	default = tracking
 [cola]
 	tabwidth = 4
 [giggle]
@@ -21,7 +21,7 @@
 	s = status
 	b = branch
 	#Usage: git signoff-rebase [base-commit]
-	signoff-rebase = "!GIT_SEQUENCE_EDITOR='sed -i -re s/^pick/e/' sh -c 'git rebase -i $1 && while git rebase --continue; do git commit --amend --signoff --no-edit; done' -"
+	signoff-rebase = !GIT_SEQUENCE_EDITOR='sed -i -re s/^pick/e/' sh -c 'git rebase -i $1 && while git rebase --continue; do git commit --amend --signoff --no-edit; done' -
 [branch]
 	autosetupmerge = true
 [merge]
