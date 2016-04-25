@@ -21,15 +21,15 @@ Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 "" A code-completion engine for Vim
 Plugin 'Valloric/YouCompleteMe'
-"" Provides easy code formatting in Vim by integrating existing code formatters. 
+"" Provides easy code formatting in Vim by integrating existing code formatters.
 Plugin 'Chiel92/vim-autoformat'
 "" A dark colourscheme for Vim created for fun
 Plugin 'Pychimp/vim-luna'
 "" A fancy start screen for Vim.
 Plugin 'mhinz/vim-startify'
-"" Vastly improved Javascript indentation and syntax support in Vim. 
+"" Vastly improved Javascript indentation and syntax support in Vim.
 Plugin 'pangloss/vim-javascript'
-"" Vim plugin to respect the Linux kernel coding style 
+"" Vim plugin to respect the Linux kernel coding style
 Plugin 'vim-scripts/linuxsty.vim'
 "" frontend for ag
 Plugin 'rking/ag.vim'
@@ -39,6 +39,8 @@ Plugin 'majutsushi/tagbar'
 Plugin 'jiangmiao/auto-pairs'
 "" Edit Files using sudo or su or any other tool
 Plugin 'chrisbra/SudoEdit.vim'
+"" This plugin causes all trailing whitespace characters (spaces and tabs) to be highlighted
+Plugin 'ntpeters/vim-better-whitespace'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
