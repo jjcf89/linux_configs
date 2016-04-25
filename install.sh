@@ -22,7 +22,7 @@ cp -vs --suffix=.bak $BASE/.xsessionrc .Xresources
 
 cp -vs --suffix=.bak $BASE/.ssh/config .ssh/
 
-sudo apt-get install -y vim git subversion
+sudo apt-get install -y vim git subversion exuberant-ctags cscope
 echo Copying .vim directory
 # If not a symlink and directory exists
 if [ ! -L .vim ] && [ -d .vim ]; then
