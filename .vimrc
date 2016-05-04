@@ -540,3 +540,38 @@ map <leader>r :!./%
 
 " This beauty remembers where you were the last time you edited the file, and returns to the same position.
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+"" Taken from https://github.com/ehartc/dot-vimrc
+
+" Can move cursor past end of line, where there are no characters, in visualblock mode
+set virtualedit=block
+
+" Start diff mode with vertical splits.
+set diffopt=vertical
+
+" 1 space, not 2, when joining sentences.
+set nojoinspaces
+
+" Delete comment character when joining commented lines, so two lines of comment becomes one line when joining, without comment mark.
+if v:version + has("patch541") >= 704
+   set formatoptions+=j
+endif
+
+"" Without need to press shift, go into command modus. For the original use of ;, see plugin Clever-f.
+nore ; :
+
+" Press same key ; again, to enter the command. If you really need to type ; in the command line (be frankly, it will never happen), C-v then ;
+autocmd CmdwinEnter * nnoremap <buffer> ; <CR><BS>
+
+" Use CTRL-p for paste from system clipboard (works on Linux distro's and Windows)
+noremap <C-p> :set paste<CR>"*p:set nopaste<CR>
+
+" Go to normal mode when rolling the fingers. I prefer it above 'jj' and it's even faster.
+inoremap jk <Esc>
+inoremap kj <Esc>
+
+" Q to replay the marco.
+    nnoremap Q @q
+
+"Ever make similar changes to two files and switch back and forth between them? (Say, source and header files?)
+nnoremap <TAB> :e#<CR>
