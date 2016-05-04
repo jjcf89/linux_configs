@@ -18,7 +18,7 @@ Plugin 'tpope/vim-endwise'
 "" Syntastic is a syntax checking plugin for Vim
 Plugin 'scrooloose/syntastic'
 "" Lean & mean status/tabline for vim that's light as air.
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 "" A code-completion engine for Vim
 Plugin 'Valloric/YouCompleteMe'
 "" Provides easy code formatting in Vim by integrating existing code formatters.
@@ -41,6 +41,18 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'chrisbra/SudoEdit.vim'
 "" This plugin causes all trailing whitespace characters (spaces and tabs) to be highlighted
 Plugin 'ntpeters/vim-better-whitespace'
+"" Improve vim sessions. Start session recording with :Obsess
+Plugin 'tpope/vim-obsession'
+"" A Vim plugin which shows a git diff in the 'gutter' (sign column).
+Plugin 'airblade/vim-gitgutter'
+"" A Filetype plugin for csv files
+Plugin 'chrisbra/csv.vim'
+"" Enable repeating supported plugin maps with "."
+Plugin 'tpope/vim-repeat.git'
+""  Simplified clipboard functionality for Vim
+Plugin 'svermeulen/vim-easyclip'
+""  Vim Space Controller
+Plugin 'vim-ctrlspace/vim-ctrlspace'
 
 " plugin from http://vim-scripts.org/vim/scripts.html
 "Plugin 'L9'
@@ -482,6 +494,23 @@ command! LoadCscope call LoadCscope()
 set cscoperelative
 
 """
+" => Airline
+"""
+let g:airline#extensions#tabline#enabled = 1
+
+"""
+" => vim-gitgutter
+"""
+set updatetime=250 " Update every 250ms
+" You can jump between hunks with [c and ]c. You can preview, stage, and undo hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
+
+"""
+" => EasyClip
+"""
+" Result of default EasyClip, remap else to 'add mark'. To use gm for 'add mark' instead of m.
+    nnoremap gm m
+
+"""
 "My settings
 """
 "Change working directory to directory of file
@@ -493,6 +522,11 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 let g:pymode_run_key = 'R'
 
 nnoremap <c-b> :make<cr>
+
+" Set color to 256 colors
+if !has('gui_running')
+    set t_Co=256
+endif
 
 colorscheme luna
 
