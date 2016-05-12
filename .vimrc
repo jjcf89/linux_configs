@@ -508,7 +508,12 @@ set updatetime=250 " Update every 250ms
 " => EasyClip
 """
 " Result of default EasyClip, remap else to 'add mark'. To use gm for 'add mark' instead of m.
-    nnoremap gm m
+nnoremap gm m
+
+let g:EasyClipUseCutDefaults = 0
+nmap yd <Plug>MoveMotionPlug
+xmap yd <Plug>MoveMotionXPlug
+nmap ydd <Plug>MoveMotionLinePlug
 
 """
 "My settings
