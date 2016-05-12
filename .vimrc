@@ -510,6 +510,7 @@ set updatetime=250 " Update every 250ms
 " Result of default EasyClip, remap else to 'add mark'. To use gm for 'add mark' instead of m.
 nnoremap gm m
 
+" Don't override vim defaults 'm' and 's'
 let g:EasyClipUseCutDefaults = 0
 nmap yd <Plug>MoveMotionPlug
 xmap yd <Plug>MoveMotionXPlug
@@ -533,7 +534,7 @@ if !has('gui_running')
     set t_Co=256
 endif
 
-colorscheme luna
+silent! colorscheme luna
 
 function! RemoveKernelTiming()
     execute "%s/\\[\\s*\\d*\\.\\d*\\s*\\]/[]/g"
@@ -576,7 +577,7 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 " Q to replay the marco.
-    nnoremap Q @q
+nnoremap Q @q
 
 "Ever make similar changes to two files and switch back and forth between them? (Say, source and header files?)
 nnoremap <TAB> :e#<CR>
